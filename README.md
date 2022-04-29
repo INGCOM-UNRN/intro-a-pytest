@@ -1,32 +1,35 @@
-# intro-to-pytest
-An introduction to PyTest with lots of simple, hackable examples (currently Python 2.7 / 3.6+ compatible).
+# Introducción a pyTest
+Una introducción a PyTest con un montón de ejemplos sencillos y hackeables.
 
-These examples are intended to be self-explanatory to a Python developer, with minimal setup - In addition to Python 2.7 or 3.6+, you'll also need `pytest` and the `pytest-mock` plugin installed to use all these examples, which you can install by running:
+Estos ejemplos pretenden ser autoexplicativos para un desarrollador de Python, requieren de los paquetes `pytest` y el plugin `pytest-mock`. Con estos instalados podrán hacer uso de todos estos ejemplos, que puedes instalar ejecutando:
 
 ```
 pip install -r requirements.txt
 ```
 
-In this folder (ideally, inside a virtual environment, to keep this from affecting your local Python libraries).
+En esta carpeta (idealmente, dentro de un entorno virtual, para evitar que esto afecte a tus bibliotecas locales de Python).
 
-Once you've got all the requirements in place, you should be able to simply run
+Una vez que tenga todos los requisitos en su lugar, usted debe ser capaz de ejecutar simplemente
 
 ```
 pytest
 ```
 
-In this folder, and see 109 items being collected, and 109 tests passing, in each of the example files, in less than a second.
+En esta carpeta, y ver 109 elementos que se recogen, y 109 pruebas que pasan, en cada uno de los archivos de ejemplo, en menos de un segundo.
 
-(PyTest will list the names of each test module file that it found, and then a period for each test case that passed, or other symbols for tests that failed, were skipped, etc.)
+(PyTest listará los nombres de cada archivo de módulo de prueba que encontró, y luego un punto para cada caso de prueba que pasó, u otros símbolos para las pruebas que fallaron, fueron omitidas, etc.)
 
-But if you're seeing all that, congratulations! You're ready to get started.
+Pero si ves todo eso, ¡felicidades! Estás listo para empezar.
 
-The recommended approach is to read each example file, then run it directly with pytest, with the `v` flag (so that each Test Case is listed "verbosely", by name) and the `s` flag, so that we can all the standard output (prints) from the Tests, which will help explain how each example is working; PyTest normally captures and hides this output, except for tests that are currently failing. (In the examples below, we'll shorten these arguements to `-vs`.)
+El enfoque recomendado es leer cada archivo de ejemplo, y luego ejecutarlo directamente con pytest, con la bandera `v` (para que cada Caso de Prueba sea listado "verbosamente", por su nombre) y la bandera `s`, para que podamos toda la salida estándar (impresiones) de las Pruebas, que ayudarán a explicar cómo está funcionando cada ejemplo; PyTest normalmente captura y oculta esta salida, excepto para las pruebas que están fallando en ese momento. (En los ejemplos siguientes, acortaremos estos argumentos a `vs`).
 
-Each example test was intended to be self-explanatory, but I have begun adding short tutorial guides to explain more of the context, suggest experiments and hacks you can attempt on th examples, and to provide recaps and reviews for each major section. The tutorial track starts with:
+Cada ejemplo de prueba fue pensado para ser auto-explicativo, pero he empezado a añadir pequeñas guías tutoriales para explicar más del contexto, sugerir experimentos y hacks que puedes intentar en los ejemplos, y proporcionar recapitulaciones y revisiones para cada sección principal. El tema de los tutoriales comienza con:
 
-[Tutorial Zero: An Empty Test](https://github.com/pluralsight/intro-to-pytest/blob/master/tutorials/00_empty_test.md)
+[Tutorial Cero: Un test vacío](https://github.com/INGCOM-UNRN/intro-a-pytest/blob/master/tutorials/00_empty_test.md)
 
-Not all of the examples have an accompanying tutorial (yet), but were written to be self-explanatory, and should at least include basic comments to explain the feature being demonstrated.
+No todos los ejemplos tienen un tutorial que los acompañe (todavía), pero se han escrito para que sean autoexplicativos, y deberían incluir al menos comentarios básicos para explicar la función que se está demostrando.
 
-If you have any feedback, questions, or PyTest features you'd like to see covered, please let me know on Pluralsight Slack as [@david.sturgis](https://pluralsight.slack.com/team/U036DTQQ1), or via email at [david-sturgis@pluralsight.com](mailto:david-sturgis@pluralsight.com), or via [GitHub Issues](https://github.com/pluralsight/intro-to-pytest/issues) (or a PR, now that I have PR notifcations turned on!).
+Aunque lo mejor es contactarme por los canales habituales si hay dudas ;-), tambien pueden contactar al autor original:
+
+Para contactar al autor original con feedback, preguntas y pedidos de features que no esten cubiertas de Pytest, contactate en Slack de Pluralsight como [@david.sturgis](https://pluralsight.slack.com/team/U036DTQQ1), o por email en [david-sturgis@pluralsight.com](mailto:david-sturgis@pluralsight.com), o via [GitHub Issues](https://github.com/pluralsight/intro-to-pytest/issues) (o un Pull Request, ¡ahora que tengo las notificaciones de PR activadas.!).
+
