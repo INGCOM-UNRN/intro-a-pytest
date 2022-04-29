@@ -3,7 +3,7 @@
 PyTest incluye un decorador "mark"(marca), que se puede utilizar para etiquetar pruebas y otros objetos para su posterior consulta (y para un tipo de parametrización más localizada, aunque llegaremos a eso más adelante).
 
 Aquí hay algunas pruebas con marcas ya aplicadas:
-[tests/11_mark_test.py](https://github.com/pluralsight/intro-to-pytest/blob/master/tests/11_mark_test.py)
+[tests/11_mark_test.py](https://github.com/INGCOM-UNRN/intro-a-pytest/blob/master/tests/11_mark_test.py)
 
 ```
 pytest -vs tests/11_mark_test.py
@@ -60,4 +60,4 @@ Mientras que el decorador `mark` puede ser utilizado para simplemente "etiquetar
 
 ### A continuación:
 
-[Mark-based Parameters](https://github.com/pluralsight/intro-to-pytest/blob/master/tutorials/14_mark_based_parameters.md)
+[Mark-based Parameters](https://github.com/INGCOM-UNRN/intro-a-pytest/blob/master/tutorials/14_mark_based_parameters.md)

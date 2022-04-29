@@ -38,4 +38,4 @@ Por ahora, pasemos a otro poderoso concepto...
 
 ### A continuación:
 
-[Introducción al Marcado de Tests](https://github.com/pluralsight/intro-to-pytest/blob/master/tutorials/13_intro_to_test_marking.md)
+[Introducción al Marcado de Tests](https://github.com/INGCOM-UNRN/intro-a-pytest/blob/master/tutorials/13_intro_to_test_marking.md)

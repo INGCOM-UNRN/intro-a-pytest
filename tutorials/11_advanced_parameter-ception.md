@@ -2,7 +2,7 @@
 
 Intentémoslo de nuevo, pero con nuestro caso de prueba dependiendo de un solo fixture (que, a su vez, depende de un segundo fixture):
 
-[tests/10_advanced_params-ception_test.py](https://github.com/pluralsight/intro-to-pytest/blob/master/tests/10_advanced_params-ception_test.py)
+[tests/10_advanced_params-ception_test.py](https://github.com/INGCOM-UNRN/intro-a-pytest/blob/master/tests/10_advanced_params-ception_test.py)
 
 
 ```
@@ -33,4 +33,4 @@ Podrías esperar que esto resultara en que `number_fixture` fuera invocado dos v
 
 ### A continuación:
 
-[Revisando Fixtures](https://github.com/pluralsight/intro-to-pytest/blob/master/tutorials/12_reviewing_fixtures.md)
+[Revisando Fixtures](https://github.com/INGCOM-UNRN/intro-a-pytest/blob/master/tutorials/12_reviewing_fixtures.md)

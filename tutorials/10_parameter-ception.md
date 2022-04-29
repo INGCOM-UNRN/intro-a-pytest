@@ -4,7 +4,7 @@ Python incluye un increíble conjunto de herramientas de iteración, incluyendo 
 
 Es mucho más fácil de demostrar que de explicar, así que empecemos por eso: Aquí hay otro caso de prueba simple, que depende de dos fixtures - Y vale la pena notar que cada uno de esos fixtures tiene su propio conjunto de parámetros:
 
-[tests/09_params-ception_test.py](https://github.com/pluralsight/intro-to-pytest/blob/master/tests/09_params-ception_test.py)
+[tests/09_params-ception_test.py](https://github.com/INGCOM-UNRN/intro-a-pytest/blob/master/tests/09_params-ception_test.py)
 
 ```
 pytest -vs tests/09_params-ception_test.py
@@ -26,4 +26,4 @@ Pero hay una forma aún más elegante de resolver ese problema en particular, co
 
 ### A continuación:
 
-[Parametro-ception avanzada!](https://github.com/pluralsight/intro-to-pytest/blob/master/tutorials/11_advanced_parameter-ception.md)
+[Parametro-ception avanzada!](https://github.com/INGCOM-UNRN/intro-a-pytest/blob/master/tutorials/11_advanced_parameter-ception.md)

@@ -8,7 +8,7 @@ It's possible to simply include those inputs and outputs (a.k.a. parameters) in 
 
 Así que vamos a ver un enfoque mejor:
 
-[tests/08_params_test.py](https://github.com/pluralsight/intro-to-pytest/blob/master/tests/08_params_test.py)
+[tests/08_params_test.py](https://github.com/INGCOM-UNRN/intro-a-pytest/blob/master/tests/08_params_test.py)
 
 ```
 pytest -vs tests/08_params_test.py
@@ -30,4 +30,4 @@ Y este comportamiento se vuelve realmente interesante (y poderoso) cuando consid
 
 ### A continuación:
 
-[Parametro-ception!](https://github.com/pluralsight/intro-to-pytest/blob/master/tutorials/10_parameter-ception.md)
+[Parametro-ception!](https://github.com/INGCOM-UNRN/intro-a-pytest/blob/master/tutorials/10_parameter-ception.md)
