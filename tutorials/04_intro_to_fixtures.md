@@ -1,29 +1,31 @@
-## 4: Fixtures
+## 4: Fixtures (Instalaciones)
 
-Fixtures are a core part of what makes PyTest really powerful - They can fill the same role as `setUp()` and `tearDown()` methods in the old xUnit style `unittest.TestCase` tests, but can also go far beyond that. And you don't even need to create Classes to use them!
+Los Fixtures son una parte central de lo que hace a PyTest realmente poderoso - Pueden cumplir el mismo rol que los métodos `setUp()` y `tearDown()` en las viejas pruebas estilo xUnit `unittest.TestCase`, pero también pueden ir mucho más allá. ¡Y ni siquiera es necesario crear Clases para utilizarlos!
 
-We create our `simple_fixture` simply by defining a function with the `pytest.fixture` decorator - This example just prints some text, but you could imagine it doing something more interesting, like setting up test data, or initializing objects to be tested...
+La traducción de Fixture más apropiada es 'instalación', como la instalación electrica de una casa. Aunque es mas apropiado pensar en la instalación en un banco de pruebas, que es en donde probaremos nuestro programa.
 
-Then we make another test, but this time we give it a single argument whose name matches the name of our `simple_fixture`, above.
+Creamos nuestro `simple_fixture` simplemente definiendo una función con el decorador `pytest.fixture` - Este ejemplo sólo imprime algo de texto, pero podrías imaginarlo haciendo algo más interesante, como configurar los datos de la prueba, o inicializar los objetos a probar...
 
-PyTest is responsible for "calling" our test functions, and deciding if they were successful, but what will it do if a test function has a named argument?
+A continuación, hacemos otra prueba, pero esta vez le damos un único argumento cuyo nombre coincide con el de nuestra `simple_fixture`, arriba.
 
-[tests/03_simple_fixture_test.py](https://github.com/pluralsight/intro-to-pytest/blob/master/tests/03_simple_fixture_test.py)
+PyTest es responsable de "llamar" a nuestras funciones de prueba, y decidir si fueron exitosas, pero ¿qué hará si una función de prueba tiene un argumento con nombre?
+
+[tests/03_simple_fixture_test.py](https://github.com/INGCOM-UNRN/intro-a-pytest/blob/master/tests/03_simple_fixture_test.py)
 
 ```
 pytest -vs tests/03_simple_fixture_test.py
 ```
 
-Now, you might be asking, "What the heck just happened?"
+Ahora, te estarás preguntando: "¿¿Qué paso??".
 
-The short answer is "dependency injection", but the longer answer is that, when PyTest calls our test functions, it's also attempting to "fill in" their named arguments using `fixtures` with matching names. And as we can see in the detailed output, it is essentially calling our fixture function first, and then our test.
+La respuesta corta es "inyección de dependencias", pero la respuesta más larga es que, cuando PyTest llama a nuestras funciones de prueba, también está intentando "rellenar" sus argumentos con nombre utilizando `fixtures` con nombres coincidentes. Y como podemos ver en la salida detallada, esencialmente está llamando a nuestra función fixture primero, y luego a nuestro test.
 
-Another way to express this is that PyTest test case arguments indicate "dependencies" on fixtures, which PyTest will prepare in advance. And it is falling the fixture function multiple times - By default, it calls the fixture function once for each test case that depends on it. (This behavior is configurable as well! But we'll get to that later.) 
+Otra forma de expresar esto es que los argumentos de los casos de prueba de PyTest indican "dependencias" de los fixture, que PyTest preparará por adelantado. Y está cayendo la función del fixture varias veces - Por defecto, llama a la función del fixture una vez por cada caso de prueba que depende de él. (¡Este comportamiento es configurable también! Pero llegaremos a eso más tarde). 
 
-(You might be wondering what happens if you add an argument whose name doesn't correspond to a Fixture: The answer is "nothing good". For example, try changing the argument name to `not_a_fixture` on one of the tests, and run them again...)
+(Te preguntarás qué pasa si añades un argumento cuyo nombre no corresponde a un Fixture: La respuesta es "nada bueno". Por ejemplo, prueba a cambiar el nombre del argumento por `not_a_fixture` en una de las pruebas, y ejecútalas de nuevo...)
 
-So far, our fixture hasn't done much for us: Let's change that.
+Hasta ahora, nuestro fixture no ha hecho mucho por nosotros: Cambiemos eso.
 
-### Up Next:
+### A continuación:
 
-[Fixture Return Values](https://github.com/pluralsight/intro-to-pytest/blob/master/tutorials/05_fixture_return_values.md)
+[Valores de retorno en Fixtures](https://github.com/INGCOM-UNRN/intro-a-pytest/blob/master/tutorials/05_fixture_return_values.md)

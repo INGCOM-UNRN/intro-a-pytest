@@ -1,41 +1,41 @@
-## 12: Reviewing Fixtures
+## 12: Revisando Fixtures
 
-* Fixtures are PyTest's mechanism for controlling the "context" around your test cases
+* Los Fixtures son el mecanismo de PyTest para controlar el "contexto" alrededor de tus casos de prueba
 
-* PyTest comes with a number of [built in fixtures](https://docs.pytest.org/en/latest/reference.html#fixtures), though you will likely want to create your own.
+* PyTest viene con un número de [fixtures incorporados](https://docs.pytest.org/en/latest/reference.html#fixtures), aunque probablemente querrás crear los tuyos propios.
 
-* Fixtures are typically functions with the @pytest.fixture decorator:
+* Los Fixtures son típicamente funciones con el decorador @pytest.fixture:
 
-    * Fixtures can `return` a value, just like a normal function, or `yield` a value like a generator (though only one yield is allowed!), and any post-yield code will be run after the test case has passed or failed.
+    * Los Fixtures pueden `devolver` un valor, como una función normal, o `devolver` un valor como un generador (¡aunque sólo se permite un rendimiento!), y cualquier código posterior al rendimiento se ejecutará después de que el caso de prueba haya pasado o fallado.
 
-    * By default, a Fixture will be called (and potentially return or yield a value) once per Test Case it is associated with, though this can be reconfigured in a number of different ways (covered later, though see parameterization below...)
+    * Por defecto, un Fixture será llamado (y potencialmente devolverá o producirá un valor) una vez por cada Caso de Prueba al que esté asociado, aunque esto puede ser reconfigurado de diferentes maneras (cubierto más adelante, aunque vea la parametrización más abajo...)
 
-    * (If a fixture raises an unhandled exception, or otherwise fails, the test case won't be run. In the case of a `yield` fixture, this also means that the post-yield code won't be run, either.)
+    * (Si un fixture lanza una excepción no manejada, o falla de alguna manera, el caso de prueba no se ejecutará. En el caso de un fixture `yield`, esto también significa que el código post-yield tampoco se ejecutará).
 
-    * Fixtures can be defined "locally", in the same module as the test cases that use them, or "globally" in a `conftest.py` file. (In the event of multiple implementations of a given fixture name, PyTest will prefer the "most local" one, e.g. the fixture located closest to the test case in your file structure.)
+    * Las fijaciones pueden definirse "localmente", en el mismo módulo que los casos de prueba que las utilizan, o "globalmente" en un archivo `conftest.py`. (En el caso de que haya múltiples implementaciones de un nombre de fixture dado, PyTest preferirá la "más local", por ejemplo, el fixture situado más cerca del caso de prueba en su estructura de archivos).
 
-* Test cases can have a "dependency" on a fixture:
+* Los casos de prueba pueden tener una "dependencia" de un fixture:
 
-    * By having a keyword argument whose name matches the fixture
+    * Teniendo un argumento de palabra clave cuyo nombre coincida con el fixture
 
-    * (Test cases will fail if their named arguments don't correspond to valid fixtures)
+    * (Los casos de prueba fallarán si sus argumentos con nombre no se corresponden con un fixture válido)
 
-    * Fixtures with parameters (`params`) can cause multiple tests to be created out of a given test case - These "parameterized" tests can pass or fail independently, and are named after the parameters.
+    * Los fixture con parámetros (`params`) pueden hacer que se creen múltiples pruebas a partir de un caso de prueba dado - Estas pruebas "parametrizadas" pueden pasar o fallar independientemente, y se denominan como los parámetros.
 
-    * (It's worth noting that the test instances themselves are the "nodes" in the PyTest testing graph, not the test case functions that you have been writing - This distinction starts to become more apparent with parameters!)
+    * (Vale la pena señalar que las instancias de prueba en sí son los "nodos" en el gráfico de pruebas de PyTest, no las funciones de casos de prueba que has estado escribiendo - ¡Esta distinción comienza a ser más evidente con los parámetros!)
 
-* Fixtures can get "very meta":
+* Los Fixtures pueden ser "muy meta":
 
-    * Fixtures can depend on each other...
+    * Las instalaciones pueden depender unas de otras...
 
-    * Fixture dependencies are similar to `import`s, in that even if A depends on B and C, and B depends on C, then C will still only be imported (or in this case, instantiated) once for A.
+    * Las dependencias de los fixture son similares a la "importación", en el sentido de que incluso si A depende de B y C, y B depende de C, entonces C sólo se importará (o en este caso, se instanciará) una vez para A.
 
-    * If a test case depends on multiple fixtures that have parameters, the test case will be called with the full cartesian product of all the parameters (e.g. every combination of all the fixture parameters combined).
+    * Si un caso de prueba depende de múltiples dispositivos que tienen parámetros, el caso de prueba será llamado con el producto cartesiano completo de todos los parámetros (por ejemplo, cada combinación de todos los parámetros de los dispositivos combinados).
 
-Fixtures are very complicated, but ultimately very powerful - we've really only scratched the surface here, but hopefully this gives you an overview of what they can do for your tests.
+Los fixtures son muy complicadas, pero en última instancia son muy potentes - realmente sólo hemos rascado la superficie aquí, pero esperamos que esto le dé una visión general de lo que pueden hacer por sus pruebas.
 
-For now, let's move on to another powerful concept...
+Por ahora, pasemos a otro poderoso concepto...
 
-### Up Next:
+### A continuación:
 
-[Introduction to Test Marking](https://github.com/pluralsight/intro-to-pytest/blob/master/tutorials/13_intro_to_test_marking.md)
+[Introducción al Marcado de Tests](https://github.com/pluralsight/intro-to-pytest/blob/master/tutorials/13_intro_to_test_marking.md)

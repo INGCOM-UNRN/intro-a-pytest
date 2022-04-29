@@ -1,18 +1,18 @@
-## 2: Special Assertions
+## 2: Afirmaciones Especiales
 
-Not everything can be expressed as a simple assertion, though, but fear not - PyTest provides:
+Sin embargo, no todo puede ser expresado como una simple aserción, pero no temas - PyTest proporciona:
 
-[tests/02_special_assertions_test.py](https://github.com/pluralsight/intro-to-pytest/blob/master/tests/02_special_assertions_test.py)
+[tests/02_special_assertions_test.py]((https://github.com/INGCOM-UNRN/intro-a-pytest/blob/master/tests/02_special_assertions_test.py)
 
 ```
 pytest tests/02_special_assertions_test.py
 ```
-Two of these tests raise exceptions on purpose - we can use the `pytest.raises` context manager to both assert that they happen (and handle that exception, so it doesn't show up as a failure). For example, if you change line 9 to `x = 1/1`, PyTest will now fail the test, since the expected Exception didn't happen. (and it will explain this in detail in the console!)
+Dos de estas pruebas lanzan excepciones a propósito - podemos usar el gestor de contexto `pytest.raises` para afirmar que suceden (y manejar esa excepción, para que no aparezca como un fallo). Por ejemplo, si cambias la línea 9 por `x = 1/1`, PyTest fallará la prueba, ya que la excepción esperada no se ha producido. (¡y lo explicará en detalle en la consola!)
 
-In `test_keyerror_details`, we also assign the exception to a variable using `as`, so that we can refer to it after the `pytest.raises` block - we can inspect it in more detail, or even `assert` that it has qualities we're expecting. Very helpful when you want to test for specific exception-raising behavior!
+En `test_keyerror_details`, también asignamos la excepción a una variable usando `as`, para que podamos referirnos a ella después del bloque `pytest.raises` - podemos inspeccionarla con más detalle, o incluso `assert` que tiene las cualidades que esperamos. Esto es muy útil cuando se quiere comprobar el comportamiento específico de las excepciones.
 
-Finally, in `test_approximate_matches`, we use `pytest.approx` to help assert that our two values are "approximately" equal, even it's not exact due to fun with floating point math. (We can also adjust how "close" we want the match to be before it fails the test - For more details, check out the [pytest.approx documentation](https://docs.pytest.org/en/latest/reference.html#pytest-approx).)
+Por último, en `test_approximate_matches`, utilizamos `pytest.approx` para ayudar a afirmar que nuestros dos valores son "aproximadamente" iguales, aunque no sea exacto debido a la diversión con las matemáticas en coma flotante. (También podemos ajustar lo "cerca" que queremos que esté la coincidencia antes de que falle la prueba - Para más detalles, consulte la [documentación de pytest.approx](https://docs.pytest.org/en/latest/reference.html#pytest-approx).)
 
-### Up Next:
+### A continuación:
 
-[Review of the Basics](https://github.com/pluralsight/intro-to-pytest/blob/master/tutorials/03_reviewing_the_basics.md)
+[Repaso de lo Basico](https://github.com/INGCOM-UNRN/intro-a-pytest/blob/master/tutorials/03_reviewing_the_basics.md)

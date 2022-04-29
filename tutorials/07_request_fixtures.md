@@ -1,21 +1,28 @@
-## 7: The "request" fixture
+## 7: La fixture "petición" 
 
-Fixtures are very powerful, not only because PyTest can run them automatically, but because they can be "aware" of the context in which they're being used!
+Los Fixtures son muy potentes, no sólo porque PyTest puede ejecutarlos automáticamente, sino porque pueden ser "conscientes" del contexto en el que se están utilizando.
 
-(And also, as we're about to see, Fixtures can depend on other Fixtures, allowing for some really interesting behavior...)
+(Y también, como vamos a ver, los Fixtures pueden depender de otros Fixtures, lo que permite un comportamiento realmente interesante...)
 
-In this example, we'll write a fixture which leverages the built-in `request` fixture (aka a "Plugin", a standard fixture that is globally available to all PyTest tests) to learn more about how it's being called:
+En este ejemplo, escribiremos un fixture que aprovecha el fixture `request` incorporado (también conocido como "Plugin", un fixture estándar que está disponible globalmente para todos los tests de PyTest) para aprender más sobre cómo está siendo llamado:
 
-[tests/06_request_test.py](https://github.com/pluralsight/intro-to-pytest/blob/master/tests/06_request_test.py)
+[tests/06_request_test.py](Como siempre, podemos ver que nuestro fixture se ejecuta primero (incluyendo una llamada a una función "arriesgada"), seguido de nuestro caso de prueba, y finalmente nuestra función safe_cleanup. Una de las ventajas de este enfoque es que podemos reutilizar una función de limpieza compartida, pero el principal beneficio es que incluso si nuestro fixture falla en la inicialización, ¡nuestra función finalizadora de "limpieza" sigue ejecutándose!
+
+Para ver realmente el finalizador en acción, descomenta la línea 11 en `07_request_finalizer_test.py` (por ejemplo, la llamada "raise Exception" comentada), y vuelve a ejecutar la prueba utilizando el comando anterior.
+
+Esa función "arriesgada" no funcionó - ¡descarriló nuestro fixture, y nuestro caso de prueba ni siquiera se ejecutó! Pero a pesar de todo, nuestra función `safe_cleanup` fue llamada.
+
+Y en una prueba real, con un fixture que establece algo complicado o costoso (y que podría fallar _después_ de haber hecho algún tipo de lío), ¡la limpieza garantizada podría ser una distinción realmente importante!
+/blob/master/tests/06_request_test.py)
 
 ```
 pytest -vs tests/06_request_test.py
 ```
 
-Among other things, our fixture can tell that it's being invoked at function-level scope (e.g. it is being referenced directly by a test case function), it knows which "node" it's currently running on (in a dependency tree sense: It knows which test case is calling it), and it knows which Module it's being run in, which in this case is the `06_request_test.py` file.
+Entre otras cosas, nuestro fixture puede decir que está siendo invocado a nivel de función (por ejemplo, está siendo referenciado directamente por una función del caso de prueba), sabe en qué "nodo" se está ejecutando actualmente (en un sentido de árbol de dependencia: sabe qué caso de prueba lo está llamando), y sabe en qué Módulo se está ejecutando, que en este caso es el archivo `06_request_test.py`.
 
-In addition to providing context, the `request` fixture can also be used to influence PyTest's behavior as it runs our tests...
+Además de proporcionar el contexto, el fixture `request` también se puede utilizar para influir en el comportamiento de PyTest mientras ejecuta nuestras pruebas...
 
-### Up Next:
+### A continuación:
 
-[Request "finalizer" Callbacks](https://github.com/pluralsight/intro-to-pytest/blob/master/tutorials/08_request_finalizers.md)
+[Request "finalizer" Callbacks](https://github.com/INGCOM-UNRN/intro-a-pytest/blob/master/tutorials/08_request_finalizers.md)

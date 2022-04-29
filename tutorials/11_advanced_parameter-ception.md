@@ -1,6 +1,6 @@
-## 11: Advanced Parameter-ception!
+## 11: Parametro-ception avanzada!
 
-Let's try that again, but with our test case depending on only one fixture (which, in turn, depends on a second fixture):
+Intentémoslo de nuevo, pero con nuestro caso de prueba dependiendo de un solo fixture (que, a su vez, depende de un segundo fixture):
 
 [tests/10_advanced_params-ception_test.py](https://github.com/pluralsight/intro-to-pytest/blob/master/tests/10_advanced_params-ception_test.py)
 
@@ -9,28 +9,28 @@ Let's try that again, but with our test case depending on only one fixture (whic
 pytest -vs tests/10_advanced_params-ception_test.py
 ```
 
-The end result is... almost identical, even though the approach is different.
+El resultado final es... casi idéntico, aunque el enfoque es diferente.
 
-Since our parameterized `coordinate_fixture` depends on another parameterized fixture, `numbers_fixture`, we still get the Cartesian Product of both set of parameters, even though the test case itself only depends on one of them.
+Dado que nuestro fixture parametrizado `coordinate_fixture` depende de otro fixture parametrizado, `numbers_fixture`, seguimos obteniendo el producto cartesiano de ambos conjuntos de parámetros, aunque el caso de prueba en sí sólo depende de uno de ellos.
 
-And this relationship is still reflected in the names PyTest assigns to the tests being run: the letter from the "inner" fixture appears first, followed by the digit from the "outer" fixture it depends on.
+Y esta relación se sigue reflejando en los nombres que PyTest asigna a las pruebas que se ejecutan: la letra del fixture "interno" aparece primero, seguida del dígito del fixture "externo" del que depende.
 
-This can be a deceptively simple but powerful feature - You can essentially create "higher order fixtures" that take each other as dependencies (and arguments), using extra layers of fixtures to further customize behavior, all without touching the test case itself.
+Esto puede ser una característica engañosamente simple pero poderosa - esencialmente puedes crear "fixtures de orden superior" que se toman unos a otros como dependencias (y argumentos), utilizando capas adicionales de fixtures para personalizar aún más el comportamiento, todo sin tocar el caso de prueba en sí.
 
-For example, try uncommenting the commented section of code (lines 19 through 22) to enable a clever piece of filtering logic using the `pytest.skip` function, and run the test again...
+Por ejemplo, prueba a descomentar la sección de código comentada (líneas 19 a 22) para activar una pieza inteligente de lógica de filtrado utilizando la función `pytest.skip`, y ejecuta la prueba de nuevo...
 
-Now the `coordinate_fixture` applies some extra logic about which parameter combinations should be used, without affecting `numbers_fixture`, or the test case.
+Ahora la función `coordinate_fixture` aplica una lógica extra sobre qué combinaciones de parámetros deben usarse, sin afectar a `numbers_fixture`, o al caso de prueba.
 
-This also demonstrates that PyTest responds to `skip` at any time - even if it's called inside of a fixture, before we've even gotten into a test case, allowing us to avoid any undesirable combinations. This is an other hint to how PyTest works, internally: Our test cases are merely specifications for the tests that PyTest will be running, and we can conditionally skip a test at any point before it completes (thus passing or failing).
+Esto también demuestra que PyTest responde a `skip` en cualquier momento - incluso si se llama dentro de un fixture, antes de que hayamos entrado en un caso de prueba, permitiéndonos evitar cualquier combinación no deseada. Esta es otra pista de cómo funciona PyTest, internamente: Nuestros casos de prueba son simplemente especificaciones para las pruebas que PyTest ejecutará, y podemos omitir condicionalmente una prueba en cualquier punto antes de que se complete (pasando o fallando).
 
-In this example, we've added our filtering logic to one of our parameterized fixtures... But we could further abstract this into a `letters_fixture`and `numbers_fixture` which yield parameters, and a third, more purpose-specific `coordinates_fixture` that depends on those, adds the filtering logic, and has no parameters of its own, with the test case depending on it only. If we expect to use our two parameterized fixtures separately, that might be an even better way of organizing them.
+En este ejemplo, hemos añadido nuestra lógica de filtrado a uno de nuestros fixtures parametrizados... Pero podríamos abstraerlo aún más en un `letter_fixture` y un `number_fixture` que produzcan parámetros, y un tercer `coordinate_fixture` más específico que dependa de ellos, que añada la lógica de filtrado, y que no tenga parámetros propios, y que el caso de prueba dependa sólo de él. Si esperamos utilizar nuestros dos fixtures parametrizados por separado, esta podría ser una forma aún mejor de organizarlos.
 
-Finally, this can also serve as an example of how fixture dependencies are not entirely unlike an `import` - If you add the `number_fixture` as an argument for (and dependency of) `test_advanced_fixtureception`, what do you expect might go wrong?
+Por último, esto también puede servir como ejemplo de cómo las dependencias de fixture no son del todo diferentes a un `import` - Si añades el `number_fixture` como argumento para (y dependencia de) `test_advanced_fixtureception`, ¿qué esperas que pueda salir mal?
 
-While this seems like it could be problematic - The test case now depends on `number_fixture` twice, both directly with a named argument, and indirectly through `coordinates_fixture` - PyTest is surprisingly cool about it.
+Aunque esto parece que podría ser problemático - El caso de prueba ahora depende de `number_fixture` dos veces, tanto directamente con un argumento con nombre, como indirectamente a través de `coordinates_fixture` - PyTest es sorprendentemente tranquilo al respecto.
 
-You might expect this to result in `number_fixture` being invoked twice, doubling our resulting tests, or even multiplying them by another copy of our extra parameter... But PyTest recognizes that both dependencies refer to the same fixture, and that fixture (by default) is run once per test case, and so we get the same results as if our `number_fixture` was only referred to once.
+Podrías esperar que esto resultara en que `number_fixture` fuera invocado dos veces, duplicando nuestras pruebas resultantes, o incluso multiplicándolas por otra copia de nuestro parámetro extra... Pero PyTest reconoce que ambas dependencias se refieren al mismo fixture, y ese fixture (por defecto) se ejecuta una vez por caso de prueba, y así obtenemos los mismos resultados que si nuestro `number_fixture` fuera referido sólo una vez.
 
-### Up Next:
+### A continuación:
 
-[Reviewing Fixtures](https://github.com/pluralsight/intro-to-pytest/blob/master/tutorials/12_reviewing_fixtures.md)
+[Revisando Fixtures](https://github.com/pluralsight/intro-to-pytest/blob/master/tutorials/12_reviewing_fixtures.md)

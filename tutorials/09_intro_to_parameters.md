@@ -6,7 +6,7 @@ In testing, we use parameterization to refactor and "automate" similar tests. Es
 
 It's possible to simply include those inputs and outputs (a.k.a. parameters) in our test case... But at the expense of making that test more complicated, and harder to understand when it fails: We'll see a single test case passing or failing, regardless of how many of those cases were valid. And it may not be clear which set of parameters was the problem, without digging into the code, turning on more debugging, etc...
 
-So let's look at a better approach:
+Así que vamos a ver un enfoque mejor:
 
 [tests/08_params_test.py](https://github.com/pluralsight/intro-to-pytest/blob/master/tests/08_params_test.py)
 
@@ -14,20 +14,20 @@ So let's look at a better approach:
 pytest -vs tests/08_params_test.py
 ```
 
-We only have one test case here, with one fixture, but that fixture includes five parameters, "a" through "e". Because our test case depends on a parameterized fixture, PyTest will run it repeatedly, once for each parameter, and it treats each of those as a distinct "test" that can pass or fail independently: We can clearly see how many of those parameters passed or failed, and it even labeled those tests with both the test case name, and the parameter being used.
+Sólo tenemos un caso de prueba aquí, con un fixture, pero ese fixture incluye cinco parámetros, de "a" a "e". Como nuestro caso de prueba depende de un fixture parametrizado, PyTest lo ejecutará repetidamente, una vez por cada parámetro, y trata cada uno de ellos como una "prueba" distinta que puede pasar o fallar independientemente: Podemos ver claramente cuántos de esos parámetros pasaron o fallaron, e incluso etiquetó esas pruebas tanto con el nombre del caso de prueba, como con el parámetro utilizado.
 
-(This is an interesting philosophical point: When we saw PyTest referring to "nodes" earlier, they seemed to correspond to our test functions... But it's more accurate to say that our test functions are merely "specifications" or "requests" that tell PyTest what to do, and the resulting nodes are the _real_ Tests. This may also make )
+(Este es un punto filosófico interesante: Cuando antes vimos que PyTest se refería a "nodos", parecían corresponder a nuestras funciones de prueba... Pero es más exacto decir que nuestras funciones de prueba son meramente "especificaciones" o "peticiones" que le dicen a PyTest qué hacer, y los nodos resultantes son las Pruebas _reales_. Esto también puede hacer que )
 
-PyTest will run our test cases (and their fixture) once per parameter: In our fixture, we're using the `request` plugin to access the current parameter value, as `request.param`, and in this example we're simply yielding that value.
+PyTest ejecutará nuestros casos de prueba (y su fixture) una vez por parámetro: En nuestro fixture, estamos usando el plugin `request` para acceder al valor del parámetro actual, como `request.param`, y en este ejemplo simplemente estamos dando ese valor.
 
-And so our single test case is called five times, once for each parameter value, with that value being passed in as the named argument corresponding to `letters_fixture`.
+Así, nuestro caso de prueba es llamado cinco veces, una vez por cada valor del parámetro, y ese valor se pasa como el argumento con nombre correspondiente a `letters_fixture`.
 
-It doesn't have to be this direct - Our fixture might use the parameter to customize an object, then yield that object to our test. (Or even yield a tuple of values that are derived from the parameter).
+No tiene por qué ser así de directo - Nuestro fixture podría utilizar el parámetro para personalizar un objeto, y luego ceder ese objeto a nuestra prueba. (O incluso ceder una tupla de valores que se derivan del parámetro).
 
-(There is also a second parameterized fixture, `mode`, which uses a second keyword argument, `ids`, which allows the names of each parameter label to be overridden. For example, the parameters we need are 1, 2, and 3, but we would prefer to see them labeled as "foo", "bar", and "baz" on the individual tests.)
+(También existe un segundo fixture parametrizado, `mode`, que utiliza un segundo argumento de palabra clave, `ids`, que permite anular los nombres de cada etiqueta del parámetro. Por ejemplo, los parámetros que necesitamos son 1, 2 y 3, pero preferiríamos verlos etiquetados como "foo", "bar" y "baz" en las pruebas individuales).
 
-And this behavior gets really interesting (and powerful) when we consider that fixtures can depend on other fixtures...
+Y este comportamiento se vuelve realmente interesante (y poderoso) cuando consideramos que los fixtures pueden depender de otros fixtures...
 
-### Up Next:
+### A continuación:
 
-[Parameter-ception!](https://github.com/pluralsight/intro-to-pytest/blob/master/tutorials/10_parameter-ception.md)
+[Parametro-ception!](https://github.com/pluralsight/intro-to-pytest/blob/master/tutorials/10_parameter-ception.md)

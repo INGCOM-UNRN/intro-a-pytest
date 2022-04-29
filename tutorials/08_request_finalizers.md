@@ -1,24 +1,24 @@
 
 ## 8: Request "finalizer" Callbacks
 
-Sometimes we want to run a "cleanup" function after testing is complete: We've already covered a very easy way to do this using `yield` [inside a fixture](), but noted that it's not the safest option, if something goes wrong inside our fixture...
+A veces queremos ejecutar una función de "limpieza" después de que la prueba se haya completado: Ya hemos cubierto una manera muy fácil de hacer esto usando `yield` [dentro de un fixture](), pero notamos que no es la opción más segura, si algo va mal dentro de nuestro fixture...
 
-Fortunately, PyTest has a `request` plugin (a built-in global fixture) that, among other things, can be used to add a "finalizer", a function which is guaranteed to be called after the fixture (and the test(s) that depend on it) are run... Even in the worst case scenario, where our fixture itself fails, and raises an unhandled exception:
+Afortunadamente, PyTest tiene un plugin `request` (un fixture global incorporado) que, entre otras cosas, puede usarse para añadir un "finalizador", una función que está garantizada para ser llamada después de que el fixture (y la(s) prueba(s) que dependen de él) se ejecuten... Incluso en el peor de los casos, en el que nuestro fixture en sí mismo falla, y lanza una excepción no manejada:
 
-[tests/07_request_finalizer_test.py](https://github.com/pluralsight/intro-to-pytest/blob/master/tests/07_request_finalizer_test.py)
+[tests/07_request_finalizer_test.py](https://github.com/INGCOM-UNRN/intro-a-pytest/blob/master/tests/07_request_finalizer_test.py)
 
 ```
 pytest -vs tests/07_request_finalizer_test.py
 ```
 
-As usual, we can see that our fixture runs first (including a "risky" function call), followed by our test case, and finally our safe_cleanup function. One advantage of this approach is that we can re-use a shared cleanup function, but the main benefit is that even if our fixture fails to initialize, our finalizer "cleanup" function still gets run!
+Como siempre, podemos ver que nuestro fixture se ejecuta primero (incluyendo una llamada a una función "arriesgada"), seguido de nuestro caso de prueba, y finalmente nuestra función safe_cleanup. Una de las ventajas de este enfoque es que podemos reutilizar una función de limpieza compartida, pero el principal beneficio es que incluso si nuestro fixture falla en la inicialización, ¡nuestra función finalizadora de "limpieza" sigue ejecutándose!
 
-To really see the finalizer in action, uncomment line 11 in `07_request_finalizer_test.py` (e.g. the commented-out "raise Exception" call), and re-run the test using the command above.
+Para ver realmente el finalizador en acción, descomenta la línea 11 en `07_request_finalizer_test.py` (por ejemplo, la llamada "raise Exception" comentada), y vuelve a ejecutar la prueba utilizando el comando anterior.
 
-That "risky" function didn't work out - it derailed our fixture, and our test case never even ran! But despite all that, our `safe_cleanup` function still got called.
+Esa función "arriesgada" no funcionó - ¡descarriló nuestro fixture, y nuestro caso de prueba ni siquiera se ejecutó! Pero a pesar de todo, nuestra función `safe_cleanup` fue llamada.
 
-And in a real test, with a fixture that sets up something complicated or expensive (and might fail _after_ it has made some kind of a mess), guaranteed cleanup could be a really important distinction!
+Y en una prueba real, con un fixture que establece algo complicado o costoso (y que podría fallar _después_ de haber hecho algún tipo de lío), ¡la limpieza garantizada podría ser una distinción realmente importante!
 
-### Up Next:
+### A continuación:
 
-[Intro to Parameters](https://github.com/pluralsight/intro-to-pytest/blob/master/tutorials/09_intro_to_parameters.md)
+[Intro to Parameters](https://github.com/INGCOM-UNRN/intro-a-pytest/blob/master/tutorials/09_intro_to_parameters.md)

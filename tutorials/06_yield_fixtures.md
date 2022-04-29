@@ -1,31 +1,31 @@
 ## 6: Yield Fixtures
 
-Here's a more complicated fixture that uses the `yield` keyword - You may be more accustomed to seeing it used in generator functions, which are typically called repeatedly (e.g. iterated) to deliver their values.
+Aquí hay un accesorio más complicado que utiliza la palabra clave `yield` - Puede que estés más acostumbrado a ver su uso en funciones generadoras, que normalmente son llamadas repetidamente (por ejemplo, iteradas) para entregar sus valores.
 
-If this seems confusing (or if you aren't familiar with `yield`), don't worry: This is a little different, but the important thing to understand is that `yield` is a lot like `return`, except for one interesting difference...
+Si esto parece confuso (o si no estás familiarizado con `yield`), no te preocupes: Esto es un poco diferente, pero lo importante es entender que `yield` es muy parecido a `return`, excepto por una interesante diferencia...
 
-[tests/05_yield_fixture_test.py](https://github.com/pluralsight/intro-to-pytest/blob/master/tests/05_yield_fixture_test.py)
+[tests/05_yield_fixture_test.py](https://github.com/INGCOM-UNRN/intro-a-pytest/blob/master/tests/05_yield_fixture_test.py)
 
 ```
 pytest -vs tests/05_yield_fixture_test.py
 ```
 
-Like last time, our fixture ran before the test case that depended on it... Up until the point that we called `yield`. Then our test was run, receiving the "yielded" value as an argument... And then, _after_ the test finished, our fixture picked up where it left off, and ran the rest of the code (after the `yield` call).
+Como la última vez, nuestro fixture se ejecutó antes que el caso de prueba que dependía de él... Hasta el momento en que llamamos a `yield`. Entonces nuestra prueba se ejecutó, recibiendo el valor "cedido" como argumento... Y entonces, _después_ de que la prueba terminara, nuestro fixture continuaba donde lo había dejado, y ejecutaba el resto del código (después de la llamada a `yield`).
 
-This allows us to do both pre-test and post-test actions, with a minimum of code! But there are a few things to keep in mind:
+Esto nos permite realizar acciones tanto antes como después de la prueba, ¡con un mínimo de código! Pero hay que tener en cuenta algunas cosas:
 
- * Unlike a typical generators, our yield fixtures should never yield more than once. (And PyTest enforces this - try adding a second yield and see what happens: Spoiler Alert! As with many of our hypothetical questions, the result is an unusable test).
+ * A diferencia de los generadores típicos, nuestros accesorios de rendimiento nunca deben ceder más de una vez. (Y PyTest lo impone - intente añadir un segundo yield y vea lo que sucede: ¡Alerta de Spoiler! Como con muchas de nuestras preguntas hipotéticas, el resultado es una prueba inutilizable).
 
-    * (If this is messing with your own personal concepts of generators, try not to read too much into it - Fixtures _can_ be generators, and PyTest will use them accordingly, but it expects them to yield exactly once, and that it will perform the first generation before the test case, and the second generation (the "cleanup" code after the `yield`) after the test case completes.
+    * (Si esto te hace confundirte con tus conceptos personales de generadores, trata de no leer demasiado en ello - Los Fixtures _pueden_ ser generadores, y PyTest los usará en consecuencia, pero espera que rindan exactamente una vez, y que realice la primera generación antes del caso de prueba, y la segunda generación (el código de "limpieza" después del `yield`) después de que el caso de prueba se complete.
 
- * There is a corner case to be aware of here: If something goes wrong _inside_ our fixture, such that an unhandled exception is thrown before we call `yield`, we'll never get to the post-yield code... Kind of understandable, if you think about it!
+ * Hay un caso de esquina que hay que tener en cuenta aquí: Si algo va mal _dentro_ de nuestro fixture, de forma que se lanza una excepción no controlada antes de llamar a `yield`, nunca llegaremos al código post-yield... Algo comprensible, si lo piensas.
  
-    * This may not be the end of the world - it also means we won't actually run the test cases that depend on our broken fixture, so perhaps the post-test cleanup won't be as vital.
+    * Esto puede no ser el fin del mundo - también significa que no ejecutaremos los casos de prueba que dependen de nuestro fixture roto, así que quizás la limpieza posterior a la prueba no será tan vital.
     
-    * (This doesn't totally kill our test run, either - The tests that depend on the broken fixture will fail during "setup", but PyTest will consider on to other stuff.)
+    * (Esto no mata totalmente nuestra ejecución de pruebas, tampoco - Las pruebas que dependen del fixture roto fallarán durante la "configuración", pero PyTest considerará otras cosas).
     
-    * (If this seems like it might be problematic, depending on what the fixture was trying to do before failed, don't worry:  There are some more thorough cleanup options, which we'll discuss later on.)
+    * (Si esto parece que puede ser problemático, dependiendo de lo que el fixture estaba tratando de hacer antes de fallar, no te preocupes: Hay algunas opciones de limpieza más completas, que discutiremos más adelante).
 
-### Up Next:
+### A continuación:
 
-[Request Fixtures](https://github.com/pluralsight/intro-to-pytest/blob/master/tutorials/07_request_fixtures.md)
+[Request Fixtures](https://github.com/INGCOM-UNRN/intro-a-pytest/blob/master/tutorials/07_request_fixtures.md)

@@ -1,4 +1,6 @@
-(I am still writing more detailed tutorials for the newer examples, but feel free to check them out anyway:)
+(Todavía estoy escribiendo tutoriales más detallados para los ejemplos más nuevos, pero no dudes en consultarlos de todos modos:)
+
+Esta es la zona "En construcción"
 
 .
 

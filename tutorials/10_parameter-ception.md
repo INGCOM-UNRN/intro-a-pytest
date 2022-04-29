@@ -1,8 +1,8 @@
-## 10: Parameter-ception!
+## 10: Parametro-ception!
 
-Python includes an amazing set of Iteration Tools, including functions that make it simple to generate all possible combinations and permutations of a set of data - We're about to see an interesting example of this kind of behavior, using multiple parameterized fixtures.
+Python incluye un increíble conjunto de herramientas de iteración, incluyendo funciones que hacen que sea sencillo generar todas las combinaciones y permutaciones posibles de un conjunto de datos - Estamos a punto de ver un ejemplo interesante de este tipo de comportamiento, utilizando múltiples accesorios parametrizados.
 
-It's a lot easier to demonstrate than explain, so let's start with that: Here's another single test case, which depends on two fixtures - And it's worth noting that each of those fixtures each have their own set of parameters:
+Es mucho más fácil de demostrar que de explicar, así que empecemos por eso: Aquí hay otro caso de prueba simple, que depende de dos fixtures - Y vale la pena notar que cada uno de esos fixtures tiene su propio conjunto de parámetros:
 
 [tests/09_params-ception_test.py](https://github.com/pluralsight/intro-to-pytest/blob/master/tests/09_params-ception_test.py)
 
@@ -10,20 +10,20 @@ It's a lot easier to demonstrate than explain, so let's start with that: Here's 
 pytest -vs tests/09_params-ception_test.py
 ```
 
-How did two sets of 4 parameters turn into 16 tests? The short answer is that we're experiencing the [Cartesian Product](https://en.wikipedia.org/wiki/Cartesian_product) of our fixture parameters.
+¿Cómo es que dos conjuntos de 4 parámetros se han convertido en 16 pruebas? La respuesta corta es que estamos experimentando el [Producto Cartesiano](https://en.wikipedia.org/wiki/Cartesian_product) de nuestros parámetros de fixture.
 
-But the less set-theory-intensive answer is that our test case depends on `letters_fixture`, which causes PyTest to produce a test for each letter parameter... And it also depends on `numbers_fixture`, which in turn wants to repeat each test with each of its own number parameters.
+Pero la respuesta menos intensiva en teoría de conjuntos es que nuestro caso de prueba depende de "letters_fixture", que hace que PyTest produzca una prueba para cada parámetro de letras... Y también depende de `numbers_fixture`, que a su vez quiere repetir cada prueba con cada uno de sus propios parámetros numéricos.
 
-This is evident from the order in which the tests are run, and (thanks to PyTest!) from the labels of those tests: We can see that our test is being run first with our `letters_fixture`, and each of its parameters (starting with "a"), and those runs are being further "multiplied" by the `letters_fixture`, which is ensuring that its own tests are being repeated for each of its own parameters (starting with "1").
+Esto es evidente por el orden en que se ejecutan las pruebas, y (¡gracias a PyTest!) por las etiquetas de esas pruebas: Podemos ver que nuestra prueba se ejecuta primero con nuestra `fijación_de_letras`, y cada uno de sus parámetros (empezando por "a"), y esas ejecuciones se "multiplican" por la `fijación_de_letras`, que se asegura de que sus propias pruebas se repitan para cada uno de sus propios parámetros (empezando por "1").
 
-As a result, our single test case function gets run as a total of sixteen tests, once for each combination of the four numbers and four letters (4 x 4 = 16).
+Como resultado, nuestra función de caso de prueba único se ejecuta como un total de dieciséis pruebas, una para cada combinación de los cuatro números y cuatro letras (4 x 4 = 16).
 
-While we _could_ just make a single fixture that yielded each combination as a parameter ('a1', 'a2', 'a3', etc.), maintaining them as separate fixtures reduces the footprint of those parameters in our code, leaving it somewhat easier to read (in the sense that two lists of four takes up half the space of a full list of sixteen).
+Aunque _podríamos_ hacer un único fixture que diera cada combinación como parámetro ('a1', 'a2', 'a3', etc.), mantenerlos como fixtures separados reduce la huella de esos parámetros en nuestro código, dejándolo algo más fácil de leer (en el sentido de que dos listas de cuatro ocupan la mitad de espacio que una lista completa de dieciséis).
 
-But these individual fixtures could also be reused and composed across different tests, allowing for a lot more flexibility, especially if the letters or numbers ever needed to be referenced on their own. And imagine if you needed a fixture that tested 234 unique combinations of letters and digits, and later decided to drop all the sets with vowels, or all the sets containing the number 3 - Wouldn't it be cleaner and easier to operate on two smaller subsets (the list of the 26 letters, and the list of 9 digits) that combine to produce that data?
+Pero estos parámetros individuales también podrían reutilizarse y componerse en diferentes pruebas, lo que permitiría una mayor flexibilidad, especialmente si las letras o los números tuvieran que referenciarse por sí solos. Imagínese que necesita un dispositivo que pruebe 234 combinaciones únicas de letras y dígitos, y que más tarde decide eliminar todos los conjuntos con vocales, o todos los conjuntos que contienen el número 3. ¿No sería más limpio y fácil operar con dos subconjuntos más pequeños (la lista de las 26 letras y la lista de los 9 dígitos) que se combinan para producir esos datos?
 
-But there's an even more elegant way to solve that particular problem, continuing to take advantage of the fact that fixtures can, in turn, depend on other fixtures...
+Pero hay una forma aún más elegante de resolver ese problema en particular, continuando con la ventaja de que los conjuntos pueden, a su vez, depender de otros conjuntos...
 
-### Up Next:
+### A continuación:
 
-[Advanced Parameter-ception!](https://github.com/pluralsight/intro-to-pytest/blob/master/tutorials/11_advanced_parameter-ception.md)
+[Parametro-ception avanzada!](https://github.com/pluralsight/intro-to-pytest/blob/master/tutorials/11_advanced_parameter-ception.md)
